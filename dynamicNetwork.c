@@ -8,6 +8,7 @@
 #include <string.h>
 #include <math.h>
 #include "bt1.h"
+
 //gcc bt8.c -lm
 //gcc -I/usr/local/include bt8.c -L/usr/local/lib -ltokyocabinet -lz -lbz2 -lrt -lpthread -lm -lc
 
