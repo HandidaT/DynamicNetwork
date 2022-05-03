@@ -16,12 +16,12 @@ node* insert(int data){
 	int lower,upper,lower1,upper1,lower2,upper2,lower3,upper3,start=1,stop=5;
 	if(data<15){lower1=16;upper1=30;lower2=16;upper2=30;lower3=16;upper3=30,lower=16,upper=30;
 	}else{lower1=1;upper1=5;lower2=6;upper2=10;lower3=11;upper3=15;}
-	node *node1 = (node*) malloc(sizeof(node));
+	node *node1 = malloc(sizeof(*node1));
 	node1->name=data+1;
    
-	node1->visionsubnodehead=(edge**) malloc(sizeof(edge));
+	node1->visionsubnodehead=malloc(sizeof(node1->visionsubnodehead));
     for(int i=start;i<=stop;i++){
-		edge *edge1 = (edge*) malloc(sizeof(edge));
+		edge *edge1 = malloc(sizeof(*edge1));
 		edge1->name=(rand()%((upper1-lower1+1)) + lower1);
 		edge1->weight=1;
 		//printf("1 %d %d\n",data,i);
@@ -35,9 +35,9 @@ node* insert(int data){
 		node1->visionsubnodetail->next=edge1;
 		node1->visionsubnodetail=edge1;
     }
-	node1->audiosubnodehead=(edge**) malloc(sizeof(edge));
+	node1->audiosubnodehead=malloc(sizeof(node1->audiosubnodehead));
     for(int i=start;i<=stop;i++){
-		edge *edge1 = (edge*) malloc(sizeof(edge));
+		edge *edge1 = malloc(sizeof(*edge1));
 		edge1->name=(rand()%((upper2-lower2+1)) + lower2);
 		edge1->weight=1;
 		//printf("2 %d %d\n",data,i);
@@ -51,9 +51,9 @@ node* insert(int data){
 		node1->audiosubnodetail->next=edge1;
 		node1->audiosubnodetail=edge1;
     }
-	node1->motionsubnodehead=(edge**) malloc(sizeof(edge));
+	node1->motionsubnodehead=malloc(sizeof(node1->motionsubnodehead));
     for(int i=start;i<=stop;i++){
-		edge *edge1 = (edge*) malloc(sizeof(edge));
+		edge *edge1 = malloc(sizeof(*edge1));
 		edge1->name=(rand()%((upper3-lower3+1)) + lower3);
 		edge1->weight=1;
 		//printf("3%d %d\n",data,i);
@@ -90,7 +90,7 @@ int main(){/*
    
    
    Queue* Q=createQueue(initialcapacity);
-   activations* input=(activations*)malloc(inputlen * sizeof(activations));
+   activations *input=malloc(inputlen * sizeof(*input));
    while(count1<2){
 		Queue* Qout=createQueue(outputcapacity);
 		if(flag1==0){
