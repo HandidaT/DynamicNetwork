@@ -1,3 +1,6 @@
 # DynamicNetwork
 
-Neural Network learning algorithm in c language
+Learning algorithm in c language.
+
+###Software Requirements
+FFMPEG, Tokyo cabinet
