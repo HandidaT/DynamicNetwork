@@ -74,14 +74,12 @@ int main(){/*
 	TCHDB *hdb;
 	int ecode;
 	char *key, *value;
-  /* create the object 
-  hdb = tchdbnew();*/
-  
-  /* open the database
-  if(!tchdbopen(hdb, "casket.tch", HDBOWRITER | HDBOCREAT)){
-    ecode = tchdbecode(hdb);
-    fprintf(stderr, "open error: %s\n", tchdberrmsg(ecode));
-  }*/
+	hdb = tchdbnew();//create the object 
+	if(!tchdbopen(hdb, "casket.tch", HDBOWRITER | HDBOCREAT)){//open the database
+		ecode = tchdbecode(hdb);
+		fprintf(stderr, "open error: %s\n", tchdberrmsg(ecode));
+	}*/
+   int img_height=2,img_width=3,audiolen=5,motionlen=5;
    int lower=0,upper=30,initialcapacity=50,inputlen=15,count1=0,flag1=0;
    int outputcapacity=inputlen;
    node*** map=malloc(sizeof(*map) *2);
