@@ -90,18 +90,15 @@ int main(){/*
    Queue* Q=createQueue(initialcapacity);//This queue will be sorted during processing
    Queue *Qunsorted=createQueue(initialcapacity);//This queue will not be sorted during processing
    activations *input=malloc(inputlen * sizeof(*input));
-   while(count1<=nooftimes_toprocess){
+   while(count1<nooftimes_toprocess){
 	   layer=0;
+	   for(int i=0;i<inputlen;i++){//Add actual input in this loop. In dynamicNetwork_toy, it is dummy data
+		input[i].name=i+1;
+		input[i].activation=4;
+		//enqueue(Q,i,4);
+	   }
 	   while(layer<=numofhiddenlayers){
-			if(layer==0){//given capacity   
-				for(int i=0;i<inputlen;i++){//Add actual input in this loop. In dynamicNetwork_toy, it is dummy data
-					input[i].name=i+1;
-					input[i].activation=4;
-					//enqueue(Q,i,4);
-				}
-				flag1=1;
-			}
-			Queue* Qout=createQueue(outputcapacity);//createQueue will create queue with size 0 but with
+			Queue* Qout=createQueue(outputcapacity);//createQueue will create queue with size 0 but with specified capacity
 			activations* temp1=signalprocess(ramlist,Q,Qout,input);
 			for(int i=0;i<inputlen;i++){
 				input[i].name=temp1[i].name;
