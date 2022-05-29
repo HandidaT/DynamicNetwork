@@ -80,7 +80,7 @@ int main(){/*
 		fprintf(stderr, "open error: %s\n", tchdberrmsg(ecode));
 	}*/
    int img_height=2,img_width=3,audiolen=5,motionlen=5,numofhiddenlayers=1;
-   int lower=0,upper=30,initialcapacity=50,inputlen=15,count1=0,layer=0,flag1=0;
+   int lower=0,upper=30,initialcapacity=50,inputlen=15,count1=0,nooftimes_toprocess=1,layer,flag1=0;
    int outputcapacity=inputlen;
    node*** map=malloc(sizeof(*map) *2);
    node** ramlist=malloc(sizeof(*ramlist) * upper);
@@ -90,27 +90,28 @@ int main(){/*
    Queue* Q=createQueue(initialcapacity);//This queue will be sorted during processing
    Queue *Qunsorted=createQueue(initialcapacity);//This queue will not be sorted during processing
    activations *input=malloc(inputlen * sizeof(*input));
-   while(layer<=numofhiddenlayers){
-		Queue* Qout=createQueue(outputcapacity);//createQueue will create queue with size 0 but with
-		if(flag1==0){//given capacity   
-			for(int i=0;i<inputlen;i++){//Add actual input in this loop. In dynamicNetwork_toy, it is dummy data
-				input[i].name=i+1;
-				input[i].activation=4;
-				//enqueue(Q,i,4);
+   while(count1<=nooftimes_toprocess){
+	   layer=0;
+	   while(layer<=numofhiddenlayers){
+			if(layer==0){//given capacity   
+				for(int i=0;i<inputlen;i++){//Add actual input in this loop. In dynamicNetwork_toy, it is dummy data
+					input[i].name=i+1;
+					input[i].activation=4;
+					//enqueue(Q,i,4);
+				}
+				flag1=1;
 			}
-			flag1=1;
-		}else 
-			flag1=0;
-			
-		activations* temp1=signalprocess(ramlist,Q,Qout,input);
-		for(int i=0;i<inputlen;i++){
-			input[i].name=temp1[i].name;
-			input[i].activation=temp1[i].activation;
-		}
-		free(Qout->array);
-		free(Qout);
-
-		layer++;
+			Queue* Qout=createQueue(outputcapacity);//createQueue will create queue with size 0 but with
+			activations* temp1=signalprocess(ramlist,Q,Qout,input);
+			for(int i=0;i<inputlen;i++){
+				input[i].name=temp1[i].name;
+				input[i].activation=temp1[i].activation;
+			}
+			free(Qout->array);
+			free(Qout);
+			layer++;
+	   }
+	   count1++;
    }
    
    node* signalnode2;//Here is code to just loop through all nodes. Can be used
